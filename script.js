@@ -56,3 +56,9 @@ const unflipCards = function() {
     }, 1000);
 }
 
+// сбрасывает переменные firstCard и secondCard 
+const resetBoard = function() {
+    [firstCard, secondCard] = [null, null];
+    lockBoard = false;
+}
+
