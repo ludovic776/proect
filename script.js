@@ -68,3 +68,9 @@ const restart = function() {
     scoreDisplay.textContent = score;
     createBoard();
 }
+
+const shuffleCards = function() {
+    Array.from(gridContainer.children).sort(() => Math.random() - 0.5).forEach(card => gridContainer.appendChild(card));
+}
+
+createBoard();
