@@ -18,3 +18,60 @@ function createBoard() {
     shuffleCards();
 }
 
+//сравнение открыты ли карточки
+const flipCard = function() {
+    if (lockBoard || this === firstCard) return;
+
+    this.classList.add('flipped');
+
+    if (!firstCard) {
+        firstCard = this;
+    } else {    
+        secondCard = this;
+        checkForMatch();
+    }
+}
+
+//проверяет, совпадают ли открытые карточки
+const checkForMatch = function() {
+    const isMatch = firstCard.dataset.name === secondCard.dataset.name;
+    isMatch ? disableCards() : unflipCards();
+}
+
+const disableCards = function() {
+    [firstCard, secondCard].forEach(card => {
+        card.removeEventListener('click', flipCard);
+        card.classList.add('matched');
+    });
+    score++;
+    scoreDisplay.textContent = score;
+    resetBoard();
+}
+
+// закрывает обе открытые карточки
+const unflipCards = function() {
+    lockBoard = true;
+    setTimeout(() => {
+        [firstCard, secondCard].forEach(card => card.classList.remove('flipped'));
+        resetBoard();
+    }, 1000);
+}
+
+// сбрасывает переменные firstCard и secondCard 
+const resetBoard = function() {
+    [firstCard, secondCard] = [null, null];
+    lockBoard = false;
+}
+
+const restart = function() {
+    gridContainer.innerHTML = '';
+    score = 0;
+    scoreDisplay.textContent = score;
+    createBoard();
+}
+
+const shuffleCards = function() {
+    Array.from(gridContainer.children).sort(() => Math.random() - 0.5).forEach(card => gridContainer.appendChild(card));
+}
+
+createBoard();
