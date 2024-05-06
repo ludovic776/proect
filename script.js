@@ -31,7 +31,6 @@ const flipCard = function() {
         checkForMatch();
     }
 }
-
 //проверяет, совпадают ли открытые карточки
 const checkForMatch = function() {
     const isMatch = firstCard.dataset.name === secondCard.dataset.name;
@@ -57,21 +56,3 @@ const unflipCards = function() {
     }, 1000);
 }
 
-// сбрасывает переменные firstCard и secondCard 
-const resetBoard = function() {
-    [firstCard, secondCard] = [null, null];
-    lockBoard = false;
-}
-
-const restart = function() {
-    gridContainer.innerHTML = '';
-    score = 0;
-    scoreDisplay.textContent = score;
-    createBoard();
-}
-
-const shuffleCards = function() {
-    Array.from(gridContainer.children).sort(() => Math.random() - 0.5).forEach(card => gridContainer.appendChild(card));
-}
-
-createBoard();
