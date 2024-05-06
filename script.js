@@ -62,3 +62,9 @@ const resetBoard = function() {
     lockBoard = false;
 }
 
+const restart = function() {
+    gridContainer.innerHTML = '';
+    score = 0;
+    scoreDisplay.textContent = score;
+    createBoard();
+}
