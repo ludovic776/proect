@@ -61,16 +61,13 @@ const resetBoard = function() {
     [firstCard, secondCard] = [null, null];
     lockBoard = false;
 }
-
 const restart = function() {
     gridContainer.innerHTML = '';
     score = 0;
     scoreDisplay.textContent = score;
     createBoard();
 }
-
 const shuffleCards = function() {
     Array.from(gridContainer.children).sort(() => Math.random() - 0.5).forEach(card => gridContainer.appendChild(card));
 }
-
 createBoard();
